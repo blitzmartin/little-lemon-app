@@ -6,8 +6,8 @@ const Stack = createNativeStackNavigator();
 
 export const RootNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="Welcome">
-      <Stack.Screen name="Welcome" component={OnboardingScreen} />
+    <Stack.Navigator initialRouteName="Onboarding">
+      <Stack.Screen name="Onboarding" component={OnboardingScreen} />
     </Stack.Navigator>
   );
 };
