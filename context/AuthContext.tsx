@@ -1,11 +1,11 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createContext, ReactNode, useEffect, useState } from "react";
 
-type User = {
+export type User = {
   firstName: string;
   lastName: string;
   email: string;
-  // preferences ?
+  // preferences: Preferences;
 };
 
 type AuthContextType = {
