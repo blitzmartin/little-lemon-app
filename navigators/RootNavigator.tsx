@@ -1,19 +1,12 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import * as React from "react";
 import { Text } from "react-native-paper";
-import { AuthContext } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 import { AccountScreen, HomeScreen, OnboardingScreen } from "../screens";
 
 const Stack = createNativeStackNavigator();
 
 export const RootNavigator = () => {
-  const authContext = React.useContext(AuthContext);
-
-  if (!authContext) {
-    return <Text>Auth context not found</Text>;
-  }
-
-  const { isLoggedIn, user, loading, login, logout } = authContext;
+  const { isLoggedIn, user, loading, login, logout } = useAuth();
 
   if (loading) {
     return <Text>Loading...</Text>;

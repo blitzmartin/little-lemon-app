@@ -1,18 +1,22 @@
 import { useState } from "react";
-import { StyleSheet, Text } from "react-native";
+import { Text } from "react-native";
 import { TextInput } from "react-native-paper";
+import { useAuth } from "../hooks/useAuth";
 import { CustomBtn, ScreenContainer, SpacedStack } from "../shared";
-import { colorGreen } from "../styles";
+import { colorGreen, colorLight, styles } from "../styles";
 import { NavigationProps } from "../types";
+import { generateFakeToken } from "../utils/utils";
 
 export const OnboardingScreen = ({ navigation }: NavigationProps) => {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
 
+  const { login } = useAuth();
+  const token = generateFakeToken();
+
   const handlePress = () => {
-    console.log("Name:", name);
-    console.log("Email:", email);
+    login({ firstName, lastName, email }, token);
     setFirstName("");
     setLastName("");
     setEmail("");
@@ -21,7 +25,9 @@ export const OnboardingScreen = ({ navigation }: NavigationProps) => {
 
   return (
     <ScreenContainer backgroundColor={colorGreen}>
-      <Text style={styles.title}>Welcome To Little Lemon</Text>
+      <Text style={[styles.title, { color: colorLight }]}>
+        Welcome To Little Lemon
+      </Text>
       <SpacedStack gap={32}>
         <TextInput
           label="First Name"
@@ -50,13 +56,3 @@ export const OnboardingScreen = ({ navigation }: NavigationProps) => {
     </ScreenContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 24,
-    alignSelf: "center",
-    color: "#fff",
-  },
-});
