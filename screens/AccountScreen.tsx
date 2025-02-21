@@ -1,12 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { Avatar, CheckBox, Divider } from "react-native-elements";
 import { TextInput } from "react-native-paper";
 import { z } from "zod";
 import { useAuth } from "../hooks/useAuth";
-import { CustomBtn, SpacedStack } from "../shared";
+import { CustomBtn, ScrollContainer, SpacedStack } from "../shared";
 import { styles } from "../styles";
 import { getUserInitials } from "../utils/utils";
 
@@ -39,7 +39,7 @@ export const AccountScreen = () => {
   };
 
   return (
-    <ScrollView>
+    <ScrollContainer>
       <Text style={styles.title}>Personal Information</Text>
       <SpacedStack>
         <View style={accountStyles.avatarContainer}>
@@ -153,12 +153,11 @@ export const AccountScreen = () => {
           <Text style={accountStyles.label}>Newsletter</Text>
         </View>
         <CustomBtn
-          title="Remove"
+          title="Save Changes"
           onPress={editAccount.handleSubmit(onEditAccountSubmit)}
-          variant="outline"
         />
       </SpacedStack>
-    </ScrollView>
+    </ScrollContainer>
   );
 };
 
