@@ -78,18 +78,21 @@ export const AccountScreen = () => {
               value={user?.firstName}
               onChangeText={(text) => console.log(text)}
               mode="outlined"
+              readOnly
             />
             <TextInput
               label="Last Name"
               value={user?.lastName}
               onChangeText={(text) => console.log(text)}
               mode="outlined"
+              readOnly
             />
             <TextInput
               label="Email"
               value={user?.email}
               onChangeText={(text) => console.log(text)}
               mode="outlined"
+              readOnly
             />
           </>
         )}
@@ -168,6 +171,7 @@ export const AccountScreen = () => {
         <CustomBtn
           title="Discard Changes"
           onPress={editAccount.handleSubmit(onDiscardAccountSubmit)}
+          variant="outline"
         />
       </SpacedStack>
     </ScrollContainer>
