@@ -1,9 +1,10 @@
-import { Text, View } from 'react-native'
+import { Text } from "react-native";
+import { ScreenContainer } from "../shared/ScreenContainer";
 
 export const HomeScreen = () => {
-     return (
-          <View>
-               <Text>HOME</Text>
-     </View>
-)
-}
+  return (
+    <ScreenContainer>
+      <Text>HOME</Text>
+    </ScreenContainer>
+  );
+};

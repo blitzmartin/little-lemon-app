@@ -1,9 +1,10 @@
-import { Text, View } from 'react-native'
+import { Text } from "react-native";
+import { ScreenContainer } from "../shared/ScreenContainer";
 
 export const AccountScreen = () => {
-     return (
-          <View>
-               <Text>ACCOUNT</Text>
-     </View>
-)
-}
+  return (
+    <ScreenContainer>
+      <Text>ACCOUNT</Text>
+    </ScreenContainer>
+  );
+};

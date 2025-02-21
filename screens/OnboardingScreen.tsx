@@ -3,21 +3,18 @@ import { StyleSheet, Text } from "react-native";
 import { TextInput } from "react-native-paper";
 import { CustomBtn, ScreenContainer, SpacedStack } from "../shared";
 import { colorGreen } from "../styles";
+import { NavigationProps } from "../types";
 
-interface OnboardingScreenProps {
-  navigation: {
-    navigate: (screen: string) => void;
-  };
-}
-
-export const OnboardingScreen = ({ navigation }: OnboardingScreenProps) => {
-  const [name, setName] = useState<string>("");
+export const OnboardingScreen = ({ navigation }: NavigationProps) => {
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
 
   const handlePress = () => {
     console.log("Name:", name);
     console.log("Email:", email);
-    setName("");
+    setFirstName("");
+    setLastName("");
     setEmail("");
     navigation.navigate("Home");
   };
@@ -27,10 +24,16 @@ export const OnboardingScreen = ({ navigation }: OnboardingScreenProps) => {
       <Text style={styles.title}>Welcome To Little Lemon</Text>
       <SpacedStack gap={32}>
         <TextInput
-          label="Name"
+          label="First Name"
           mode="outlined"
-          value={name}
-          onChangeText={setName}
+          value={firstName}
+          onChangeText={setFirstName}
+        />
+        <TextInput
+          label="Last Name"
+          mode="outlined"
+          value={lastName}
+          onChangeText={setLastName}
         />
         <TextInput
           label="Email"
@@ -41,7 +44,7 @@ export const OnboardingScreen = ({ navigation }: OnboardingScreenProps) => {
         <CustomBtn
           title="Next"
           onPress={handlePress}
-          disabled={name == "" || email === ""}
+          disabled={firstName == "" || lastName == "" || email === ""}
         />
       </SpacedStack>
     </ScreenContainer>
@@ -55,13 +58,5 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     alignSelf: "center",
     color: "#fff",
-  },
-  input: {
-    width: "80%",
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    borderRadius: 4,
-    padding: 12,
   },
 });
