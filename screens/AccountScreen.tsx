@@ -1,12 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { Avatar, CheckBox, Divider } from "react-native-elements";
 import { TextInput } from "react-native-paper";
 import { z } from "zod";
 import { useAuth } from "../hooks/useAuth";
-import { CustomBtn, ScreenContainer, SpacedStack } from "../shared";
+import { CustomBtn, SpacedStack } from "../shared";
 import { styles } from "../styles";
 import { getUserInitials } from "../utils/utils";
 
@@ -19,27 +19,27 @@ const editAccountValidationSchema = z.object({
 
 type EditAccountFormValues = z.infer<typeof editAccountValidationSchema>;
 
-const editAccount = useForm<EditAccountFormValues>({
-  // populate with values found in user preferences
-  defaultValues: {
-    orderStatus: true,
-    passwordChange: true,
-    specialOffer: false,
-    newsletter: false,
-  },
-  resolver: zodResolver(editAccountValidationSchema),
-});
-
 export const AccountScreen = () => {
   const { user } = useAuth();
   const initials = getUserInitials(user);
+
+  const editAccount = useForm<EditAccountFormValues>({
+    // populate with values found in user preferences
+    defaultValues: {
+      orderStatus: true,
+      passwordChange: true,
+      specialOffer: false,
+      newsletter: false,
+    },
+    resolver: zodResolver(editAccountValidationSchema),
+  });
 
   const onEditAccountSubmit = async (values: EditAccountFormValues) => {
     console.log(values);
   };
 
   return (
-    <ScreenContainer>
+    <ScrollView>
       <Text style={styles.title}>Personal Information</Text>
       <SpacedStack>
         <View style={accountStyles.avatarContainer}>
@@ -158,7 +158,7 @@ export const AccountScreen = () => {
           variant="outline"
         />
       </SpacedStack>
-    </ScreenContainer>
+    </ScrollView>
   );
 };
 
