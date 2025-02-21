@@ -34,8 +34,17 @@ export const AccountScreen = () => {
     resolver: zodResolver(editAccountValidationSchema),
   });
 
-  const onEditAccountSubmit = async (values: EditAccountFormValues) => {
+  const onSaveAccountSubmit = async (values: EditAccountFormValues) => {
     console.log(values);
+  };
+  const onDiscardAccountSubmit = async () => {
+    // populate with values found in user preferences / defaultValues
+    editAccount.reset({
+      orderStatus: true,
+      passwordChange: true,
+      specialOffer: false,
+      newsletter: false,
+    });
   };
 
   return (
@@ -154,7 +163,11 @@ export const AccountScreen = () => {
         </View>
         <CustomBtn
           title="Save Changes"
-          onPress={editAccount.handleSubmit(onEditAccountSubmit)}
+          onPress={editAccount.handleSubmit(onSaveAccountSubmit)}
+        />
+        <CustomBtn
+          title="Discard Changes"
+          onPress={editAccount.handleSubmit(onDiscardAccountSubmit)}
         />
       </SpacedStack>
     </ScrollContainer>
