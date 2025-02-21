@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   text: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "bold",
   },
 });

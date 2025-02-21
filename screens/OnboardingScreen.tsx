@@ -4,9 +4,24 @@ import { TextInput } from "react-native-paper";
 import { CustomBtn, ScreenContainer, SpacedStack } from "../shared";
 import { colorGreen } from "../styles";
 
-export const OnboardingScreen = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+interface OnboardingScreenProps {
+  navigation: {
+    navigate: (screen: string) => void;
+  };
+}
+
+export const OnboardingScreen = ({ navigation }: OnboardingScreenProps) => {
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+
+  const handlePress = () => {
+    console.log("Name:", name);
+    console.log("Email:", email);
+    setName("");
+    setEmail("");
+    navigation.navigate("Home");
+  };
+
   return (
     <ScreenContainer backgroundColor={colorGreen}>
       <Text style={styles.title}>Welcome To Little Lemon</Text>
@@ -24,9 +39,9 @@ export const OnboardingScreen = () => {
           onChangeText={setEmail}
         />
         <CustomBtn
-          title="Default Button"
-          onPress={() => console.log("Pressed!")}
-          variant="default"
+          title="Next"
+          onPress={handlePress}
+          disabled={name == "" || email === ""}
         />
       </SpacedStack>
     </ScreenContainer>
