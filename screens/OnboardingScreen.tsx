@@ -1,9 +1,10 @@
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
+import { ScreenContainer } from '../shared/ScreenContainer';
 
 export const OnboardingScreen = () => {
      return (
-     <View>
+     <ScreenContainer>
           <Text>Welcome To Little Lemon</Text>
-     </View>
+     </ScreenContainer>
      );
 }

@@ -6,7 +6,7 @@ export default function App() {
   return (
   <AuthProvider>
     <NavigationContainer>
-      <RootNavigator />
+        <RootNavigator />
     </NavigationContainer>
   </AuthProvider>
   );
