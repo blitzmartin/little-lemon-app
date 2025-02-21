@@ -22,7 +22,7 @@ export const RootNavigator = () => {
 
   return (
     <Stack.Navigator initialRouteName={isLoggedIn ? "Home" : "Onboarding"}>
-          {isLoggedIn ? (
+      {isLoggedIn ? (
         <>
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Account" component={AccountScreen} />
