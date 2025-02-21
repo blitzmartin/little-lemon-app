@@ -85,11 +85,9 @@ export const AccountScreen = () => {
           </>
         )}
         <Divider style={{ marginTop: 12 }} />
-        {user && (
-          <Text style={[styles.title, { fontSize: 20 }]}>
-            Email Notifications
-          </Text>
-        )}
+        <Text style={[styles.title, { fontSize: 20 }]}>
+          Email Notifications
+        </Text>
         <View style={accountStyles.checkboxContainer}>
           <Controller
             control={editAccount.control}
@@ -104,7 +102,55 @@ export const AccountScreen = () => {
             name="orderStatus"
             rules={{ required: true }}
           />
-          <Text style={accountStyles.label}>Do you like React Native?</Text>
+          <Text style={accountStyles.label}>Order Status</Text>
+        </View>
+        <View style={accountStyles.checkboxContainer}>
+          <Controller
+            control={editAccount.control}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <CheckBox
+                title="Password Change"
+                checked={value}
+                onPress={onChange}
+                onBlur={onBlur}
+              />
+            )}
+            name="passwordChange"
+            rules={{ required: true }}
+          />
+          <Text style={accountStyles.label}>Password Change</Text>
+        </View>
+        <View style={accountStyles.checkboxContainer}>
+          <Controller
+            control={editAccount.control}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <CheckBox
+                title="Special Offer"
+                checked={value}
+                onPress={onChange}
+                onBlur={onBlur}
+              />
+            )}
+            name="specialOffer"
+            rules={{ required: true }}
+          />
+          <Text style={accountStyles.label}>Special Offer</Text>
+        </View>
+        <View style={accountStyles.checkboxContainer}>
+          <Controller
+            control={editAccount.control}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <CheckBox
+                title="Newsletter"
+                checked={value}
+                onPress={onChange}
+                onBlur={onBlur}
+              />
+            )}
+            name="newsletter"
+            rules={{ required: true }}
+          />
+          <Text style={accountStyles.label}>Newsletter</Text>
         </View>
         <CustomBtn
           title="Remove"
