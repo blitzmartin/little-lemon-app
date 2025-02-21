@@ -114,7 +114,6 @@ export const AccountScreen = () => {
             name="orderStatus"
             rules={{ required: true }}
           />
-          <Text style={accountStyles.label}>Order Status</Text>
         </View>
         <View style={accountStyles.checkboxContainer}>
           <Controller
@@ -130,7 +129,6 @@ export const AccountScreen = () => {
             name="passwordChange"
             rules={{ required: true }}
           />
-          <Text style={accountStyles.label}>Password Change</Text>
         </View>
         <View style={accountStyles.checkboxContainer}>
           <Controller
@@ -146,7 +144,6 @@ export const AccountScreen = () => {
             name="specialOffer"
             rules={{ required: true }}
           />
-          <Text style={accountStyles.label}>Special Offer</Text>
         </View>
         <View style={accountStyles.checkboxContainer}>
           <Controller
@@ -162,7 +159,6 @@ export const AccountScreen = () => {
             name="newsletter"
             rules={{ required: true }}
           />
-          <Text style={accountStyles.label}>Newsletter</Text>
         </View>
         <CustomBtn
           title="Save Changes"
