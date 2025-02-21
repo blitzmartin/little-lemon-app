@@ -6,7 +6,7 @@ import { AccountScreen, HomeScreen, OnboardingScreen } from "../screens";
 const Stack = createNativeStackNavigator();
 
 export const RootNavigator = () => {
-  const { isLoggedIn, user, loading, login, logout } = useAuth();
+  const { isLoggedIn, loading} = useAuth();
 
   if (loading) {
     return <Text>Loading...</Text>;
