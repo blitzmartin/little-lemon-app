@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
     sectionHeader: {
     fontSize: 24,
     color: "#333",
-    backgroundColor: "#FBDABB",
+    backgroundColor: colorYellow,
     padding: 8,
     marginTop: 8,
   },
@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
   },
   searchBar: {
     marginBottom: 24,
-    backgroundColor: "#495E57",
+    backgroundColor: colorGreen,
     shadowRadius: 0,
     shadowOpacity: 0,
   },
