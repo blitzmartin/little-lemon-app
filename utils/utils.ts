@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { User } from '../context/AuthContext';
 import { MenuItem, SectionListData } from '../types';
 
@@ -17,3 +18,16 @@ export const getSectionListData = (menuItems: MenuItem[]): SectionListData[] => 
     data: menuItems.filter((item) => item.category === categoryTitle),
   }));
 };
+
+
+export function useUpdateEffect(effect: () => void | (() => void), dependencies: React.DependencyList = []) {
+  const isInitialMount = useRef(true);
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      return effect();
+    }
+  }, dependencies);
+}

@@ -1,12 +1,26 @@
-import { useEffect, useState } from "react";
+import debounce from "lodash.debounce";
+import {
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { Alert, SectionList, Text, View } from "react-native";
+import { Searchbar } from "react-native-paper";
 import { useAuth } from "../hooks/useAuth";
 import { CustomBtn } from "../shared";
+import { Filters } from "../shared/Filters";
 import { ScreenContainer } from "../shared/ScreenContainer";
 import { styles } from "../styles";
 import { MenuItem, NavigationProps, SectionListData } from "../types";
-import { createTable, getMenuItems, saveMenuItems } from "../utils/database";
-import { getSectionListData } from "../utils/utils";
+import {
+  createTable,
+  filterByQueryAndCategories,
+  getMenuItems,
+  saveMenuItems,
+} from "../utils/database";
+import { getSectionListData, useUpdateEffect } from "../utils/utils";
 
 const API_URL =
   "https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu-items-by-category.json";
@@ -80,8 +94,65 @@ export const HomeScreen = ({ navigation }: NavigationProps) => {
     })();
   }, []);
 
+  useUpdateEffect(() => {
+    (async () => {
+      const activeCategories = sections.filter((s, i) => {
+        if (filterSelections.every((item) => item === false)) {
+          return true;
+        }
+        return filterSelections[i];
+      });
+      try {
+        const menuItems = await filterByQueryAndCategories(
+          query,
+          activeCategories
+        );
+        const sectionListData = getSectionListData(menuItems);
+        setData(sectionListData);
+      } catch (err) {
+        if (err instanceof Error) {
+          Alert.alert(err.message);
+        } else {
+          Alert.alert("An unknown error occurred");
+        }
+      }
+    })();
+  }, [filterSelections, query]);
+
+  const lookup = useCallback((q: SetStateAction<string>) => {
+    setQuery(q);
+  }, []);
+
+  const debouncedLookup = useMemo(() => debounce(lookup, 500), [lookup]);
+
+  const handleSearchChange = (text: string) => {
+    setSearchBarText(text);
+    debouncedLookup(text);
+  };
+
+  const handleFiltersChange = async (index: number) => {
+    const arrayCopy = [...filterSelections];
+    arrayCopy[index] = !filterSelections[index];
+    setFilterSelections(arrayCopy);
+  };
+
   return (
     <ScreenContainer>
+      <Searchbar
+        placeholder="Search"
+        placeholderTextColor="white"
+        onChangeText={handleSearchChange}
+        value={searchBarText}
+        style={styles.searchBar}
+        iconColor="white"
+        inputStyle={{ color: "white" }}
+        elevation={0}
+      />
+      <Filters
+        selections={filterSelections}
+        onChange={handleFiltersChange}
+        sections={sections}
+      />
       <Text style={styles.title}>Home</Text>
       <CustomBtn
         title="My Account"

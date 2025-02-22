@@ -22,3 +22,10 @@ export enum Category {
   Salads = "Salads",
   Beverages = "Beverages"
 }
+
+
+ export type FiltersProps = {
+  onChange: (index: number) => void;
+  selections: boolean[];
+  sections: string[];
+}

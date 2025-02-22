@@ -50,3 +50,31 @@ export const saveMenuItems = async (menuItems: MenuItem[]): Promise<void> => {
     throw error; // Rethrow the error to be handled by the caller if needed
   }
 };
+
+
+export const filterByQueryAndCategories = async (
+  query: string,
+  activeCategories: string[]
+): Promise<MenuItem[]> => {
+  try {
+    let sqlQuery = "SELECT * FROM menuitems WHERE title LIKE ?";
+    let queryParams: (string | number)[] = [`%${query}%`];
+
+    if (activeCategories.length > 0) {
+      sqlQuery +=
+        " AND category IN (" +
+        activeCategories.map(() => "?").join(",") +
+        ")";
+      queryParams = queryParams.concat(activeCategories);
+    }
+
+    const statement = await db.prepareAsync(sqlQuery);
+    const result = await statement.executeAsync(queryParams);
+    const allRows = await result.getAllAsync();
+    await statement.finalizeAsync();
+    return allRows as MenuItem[];
+  } catch (error) {
+    console.error("Error filtering menu items:", error);
+    return [];
+  }
+};
