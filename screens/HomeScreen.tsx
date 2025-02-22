@@ -5,7 +5,8 @@ import { CustomBtn } from "../shared";
 import { ScreenContainer } from "../shared/ScreenContainer";
 import { styles } from "../styles";
 import { MenuItem, NavigationProps, SectionListData } from "../types";
-import { createTable, getMenuItems } from "../utils/database";
+import { createTable, getMenuItems, saveMenuItems } from "../utils/database";
+import { getSectionListData } from "../utils/utils";
 
 const API_URL =
   "https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu-items-by-category.json";
@@ -55,7 +56,7 @@ export const HomeScreen = ({ navigation }: NavigationProps) => {
         await createTable();
         let menuItems = await getMenuItems();
         console.log("GET MENU ITEMS: ", menuItems);
-        /* if (!menuItems.length) {
+        if (!menuItems.length) {
           const items = await getData();
           if (items && Array.isArray(items) && items.length) {
             saveMenuItems(items); // build this function in database.ts
@@ -69,7 +70,7 @@ export const HomeScreen = ({ navigation }: NavigationProps) => {
           }
         }
         const sectionListData = getSectionListData(menuItems);
-        setData(sectionListData); */
+        setData(sectionListData);
       } catch (err) {
         if (err instanceof Error) {
           Alert.alert(err.message);
