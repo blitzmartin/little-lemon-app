@@ -26,10 +26,10 @@ export const AccountScreen = () => {
   const editAccount = useForm<EditAccountFormValues>({
     // populate with values found in user preferences
     defaultValues: {
-      orderStatus: user?.pref?.orderStatus || true,
-      passwordChange: user?.pref?.passwordChange || true,
-      specialOffer: user?.pref?.specialOffer || false,
-      newsletter: user?.pref?.newsletter || false,
+      orderStatus: user?.pref?.orderStatus ?? true,
+      passwordChange: user?.pref?.passwordChange ?? true,
+      specialOffer: user?.pref?.specialOffer ?? false,
+      newsletter: user?.pref?.newsletter ?? false,
     },
     resolver: zodResolver(editAccountValidationSchema),
   });
@@ -45,10 +45,10 @@ export const AccountScreen = () => {
 
   const onDiscardAccountSubmit = async () => {
     editAccount.reset({
-      orderStatus: user?.pref?.orderStatus || true,
-      passwordChange: user?.pref?.passwordChange || true,
-      specialOffer: user?.pref?.specialOffer || false,
-      newsletter: user?.pref?.newsletter || false,
+      orderStatus: user?.pref?.orderStatus ?? true,
+      passwordChange: user?.pref?.passwordChange ?? true,
+      specialOffer: user?.pref?.specialOffer ?? false,
+      newsletter: user?.pref?.newsletter ?? false,
     });
   };
 

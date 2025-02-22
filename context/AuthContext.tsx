@@ -81,16 +81,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       throw new Error("User is not logged in");
     }
 
-    // Aggiorna l'oggetto utente con le nuove preferenze
     const updatedUser: User = {
       ...user,
       pref: preferences,
     };
 
-    // Salva le preferenze aggiornate in AsyncStorage
     await AsyncStorage.setItem("userData", JSON.stringify(updatedUser));
 
-    // Aggiorna lo stato locale
     setUser(updatedUser);
   };
 
