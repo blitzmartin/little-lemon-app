@@ -20,30 +20,35 @@ const editAccountValidationSchema = z.object({
 type EditAccountFormValues = z.infer<typeof editAccountValidationSchema>;
 
 export const AccountScreen = () => {
-  const { user } = useAuth();
+  const { user, savePreferences } = useAuth();
   const initials = getUserInitials(user);
 
   const editAccount = useForm<EditAccountFormValues>({
     // populate with values found in user preferences
     defaultValues: {
-      orderStatus: true,
-      passwordChange: true,
-      specialOffer: false,
-      newsletter: false,
+      orderStatus: user?.pref?.orderStatus || true,
+      passwordChange: user?.pref?.passwordChange || true,
+      specialOffer: user?.pref?.specialOffer || false,
+      newsletter: user?.pref?.newsletter || false,
     },
     resolver: zodResolver(editAccountValidationSchema),
   });
 
   const onSaveAccountSubmit = async (values: EditAccountFormValues) => {
-    console.log(values);
+    try {
+      await savePreferences(values);
+      console.log("Preferences saved successfully!");
+    } catch (error) {
+      console.error("Failed to save preferences:", error);
+    }
   };
+
   const onDiscardAccountSubmit = async () => {
-    // populate with values found in user preferences / defaultValues
     editAccount.reset({
-      orderStatus: true,
-      passwordChange: true,
-      specialOffer: false,
-      newsletter: false,
+      orderStatus: user?.pref?.orderStatus || true,
+      passwordChange: user?.pref?.passwordChange || true,
+      specialOffer: user?.pref?.specialOffer || false,
+      newsletter: user?.pref?.newsletter || false,
     });
   };
 
@@ -107,7 +112,7 @@ export const AccountScreen = () => {
               <CheckBox
                 title="Order Status"
                 checked={value}
-                onPress={onChange}
+                onPress={() => onChange(!value)}
                 onBlur={onBlur}
               />
             )}
@@ -122,7 +127,7 @@ export const AccountScreen = () => {
               <CheckBox
                 title="Password Change"
                 checked={value}
-                onPress={onChange}
+                onPress={() => onChange(!value)}
                 onBlur={onBlur}
               />
             )}
@@ -137,7 +142,7 @@ export const AccountScreen = () => {
               <CheckBox
                 title="Special Offer"
                 checked={value}
-                onPress={onChange}
+                onPress={() => onChange(!value)}
                 onBlur={onBlur}
               />
             )}
@@ -152,7 +157,7 @@ export const AccountScreen = () => {
               <CheckBox
                 title="Newsletter"
                 checked={value}
-                onPress={onChange}
+                onPress={() => onChange(!value)}
                 onBlur={onBlur}
               />
             )}

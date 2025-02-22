@@ -5,7 +5,14 @@ export type User = {
   firstName: string;
   lastName: string;
   email: string;
-  // preferences: Preferences;
+  pref?: Preferences;
+};
+
+type Preferences = {
+  orderStatus: boolean;
+  passwordChange: boolean;
+  specialOffer: boolean;
+  newsletter: boolean;
 };
 
 type AuthContextType = {
@@ -14,6 +21,7 @@ type AuthContextType = {
   loading: boolean;
   login: (userData: User, token: string) => Promise<void>;
   logout: () => Promise<void>;
+  savePreferences: (preferences: Preferences) => Promise<void>;
 };
 
 export const AuthContext = createContext<AuthContextType | undefined>(
@@ -44,10 +52,21 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, []);
 
   const login = async (userData: User, token: string) => {
+    const defaultPreferences: Preferences = {
+      orderStatus: true,
+      passwordChange: true,
+      specialOffer: false,
+      newsletter: false,
+    };
+    const userWithDefaults: User = {
+      ...userData,
+      pref: userData.pref || defaultPreferences,
+    };
+
     await AsyncStorage.setItem("userToken", token);
-    await AsyncStorage.setItem("userData", JSON.stringify(userData));
+    await AsyncStorage.setItem("userData", JSON.stringify(userWithDefaults));
     setIsLoggedIn(true);
-    setUser(userData);
+    setUser(userWithDefaults);
   };
 
   const logout = async () => {
@@ -57,9 +76,34 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setUser(null);
   };
 
+  const savePreferences = async (preferences: Preferences) => {
+    if (!user) {
+      throw new Error("User is not logged in");
+    }
+
+    // Aggiorna l'oggetto utente con le nuove preferenze
+    const updatedUser: User = {
+      ...user,
+      pref: preferences,
+    };
+
+    // Salva le preferenze aggiornate in AsyncStorage
+    await AsyncStorage.setItem("userData", JSON.stringify(updatedUser));
+
+    // Aggiorna lo stato locale
+    setUser(updatedUser);
+  };
+
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn, user, loading: isLoading, login, logout }}
+      value={{
+        isLoggedIn,
+        user,
+        loading: isLoading,
+        login,
+        logout,
+        savePreferences,
+      }}
     >
       {children}
     </AuthContext.Provider>
