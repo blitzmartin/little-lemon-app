@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Alert, Text } from "react-native";
+import { Alert, SectionList, Text, View } from "react-native";
 import { useAuth } from "../hooks/useAuth";
 import { CustomBtn } from "../shared";
 import { ScreenContainer } from "../shared/ScreenContainer";
@@ -55,11 +55,10 @@ export const HomeScreen = ({ navigation }: NavigationProps) => {
       try {
         await createTable();
         let menuItems = await getMenuItems();
-        console.log("GET MENU ITEMS: ", menuItems);
         if (!menuItems.length) {
           const items = await getData();
           if (items && Array.isArray(items) && items.length) {
-            saveMenuItems(items); // build this function in database.ts
+            saveMenuItems(items);
             menuItems = items;
           } else {
             console.warn(
@@ -89,6 +88,25 @@ export const HomeScreen = ({ navigation }: NavigationProps) => {
         onPress={() => navigation.navigate("Account")}
       />
       <CustomBtn title="Logout" onPress={() => logout()} />
+      <SectionList
+        sections={data}
+        keyExtractor={(item) =>
+          item?.id?.toString() ?? Math.random().toString()
+        }
+        renderItem={({ item }) =>
+          item ? <Item title={item.title} price={item.price} /> : null
+        }
+        renderSectionHeader={({ section: { title } }) => (
+          <Text style={styles.sectionHeader}>{title}</Text>
+        )}
+      />
     </ScreenContainer>
   );
 };
+
+const Item = ({ title, price }: { title: string; price: string }) => (
+  <View style={styles.item}>
+    <Text style={styles.title}>{title}</Text>
+    <Text style={styles.title}>${price}</Text>
+  </View>
+);
