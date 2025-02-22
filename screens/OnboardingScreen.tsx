@@ -46,6 +46,8 @@ export const OnboardingScreen = ({ navigation }: NavigationProps) => {
           mode="outlined"
           value={email}
           onChangeText={setEmail}
+          textContentType="emailAddress"
+          keyboardType="email-address"
         />
         <CustomBtn
           title="Next"
