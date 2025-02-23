@@ -20,4 +20,32 @@ export const styles = StyleSheet.create({
     marginBottom: 24,
     alignSelf: "center",
   },
+     filtersContainer: {
+    backgroundColor: "green",
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 16,
+  },
+    sectionHeader: {
+    fontSize: 24,
+    color: "#333",
+    backgroundColor: colorYellow,
+    padding: 8,
+    marginTop: 8,
+  },
+  item: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 16,
+  },
+    sectionList: {
+    paddingHorizontal: 16,
+  },
+  searchBar: {
+    marginBottom: 24,
+    backgroundColor: colorGreen,
+    shadowRadius: 0,
+    shadowOpacity: 0,
+  },
 });
