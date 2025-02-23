@@ -6,7 +6,7 @@ import { Avatar, CheckBox, Divider } from "react-native-elements";
 import { TextInput } from "react-native-paper";
 import { z } from "zod";
 import { useAuth } from "../hooks/useAuth";
-import { CustomBtn, ScrollContainer, SpacedStack } from "../shared";
+import { CustomBtn, LogoutBtn, ScrollContainer, SpacedStack } from "../shared";
 import { styles } from "../styles";
 import { getUserInitials } from "../utils/utils";
 
@@ -20,7 +20,7 @@ const editAccountValidationSchema = z.object({
 type EditAccountFormValues = z.infer<typeof editAccountValidationSchema>;
 
 export const AccountScreen = () => {
-  const { user, savePreferences } = useAuth();
+  const { user, savePreferences, logout } = useAuth();
   const initials = getUserInitials(user);
 
   const editAccount = useForm<EditAccountFormValues>({
@@ -54,7 +54,28 @@ export const AccountScreen = () => {
 
   return (
     <ScrollContainer>
-      <Text style={styles.title}>Personal Information</Text>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop: -12,
+        }}
+      >
+        <Text
+          style={[
+            styles.title,
+            {
+              flex: 1,
+              textAlign: "center",
+              paddingTop: 12,
+            },
+          ]}
+        >
+          Personal Information
+        </Text>
+        <LogoutBtn onPress={() => logout()} />
+      </View>
       <SpacedStack>
         <View style={accountStyles.avatarContainer}>
           <Avatar
