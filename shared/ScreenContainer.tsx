@@ -31,12 +31,6 @@ export const ScrollContainer = ({
 }) => {
   return (
     <View style={[styles.container, { backgroundColor }]}>
-      <View style={styles.logoContainer}>
-        <Image
-          source={require("../assets/little-lemon-logo.png")}
-          style={styles.logo}
-        />
-      </View>
       <ScrollView style={styles.innerContainer}>{children}</ScrollView>
     </View>
   );
@@ -55,13 +49,13 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     margin: 16,
     width: "100%",
-    height: 60,
+    height: 40,
   },
   logoContainer: {
     width: "100%",
-    height: 92,
+    height: 68,
     alignSelf: "center",
-    marginBottom: 16,
+    marginBottom: 8,
     backgroundColor: "#fff",
   },
 });

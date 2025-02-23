@@ -20,13 +20,16 @@ export const styles = StyleSheet.create({
     marginBottom: 24,
     alignSelf: "center",
   },
-     filtersContainer: {
+   text: {
+    fontSize: 16,
+  },
+  filtersContainer: {
     backgroundColor: "green",
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 16,
   },
-    sectionHeader: {
+  sectionHeader: {
     fontSize: 24,
     color: "#333",
     backgroundColor: colorYellow,
@@ -39,13 +42,19 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     padding: 16,
   },
-    sectionList: {
+  sectionList: {
     paddingHorizontal: 16,
   },
   searchBar: {
+    marginTop: -20,
     marginBottom: 24,
     backgroundColor: colorGreen,
     shadowRadius: 0,
     shadowOpacity: 0,
+  },
+  titleContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 });

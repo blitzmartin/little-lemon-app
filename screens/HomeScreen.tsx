@@ -1,3 +1,4 @@
+import { MaterialIcons } from "@expo/vector-icons";
 import debounce from "lodash.debounce";
 import {
   SetStateAction,
@@ -9,10 +10,9 @@ import {
 import { Alert, SectionList, Text, View } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { useAuth } from "../hooks/useAuth";
-import { CustomBtn } from "../shared";
 import { Filters } from "../shared/Filters";
 import { ScreenContainer } from "../shared/ScreenContainer";
-import { styles } from "../styles";
+import { colorDark, styles } from "../styles";
 import { MenuItem, NavigationProps, SectionListData } from "../types";
 import {
   createTable,
@@ -20,20 +20,25 @@ import {
   getMenuItems,
   saveMenuItems,
 } from "../utils/database";
-import { getSectionListData, useUpdateEffect } from "../utils/utils";
+import {
+  getSectionListData,
+  getUserInitials,
+  useUpdateEffect,
+} from "../utils/utils";
 
 const API_URL =
   "https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu-items-by-category.json";
 const sections = ["Appetizers", "Salads", "Beverages"];
 
 export const HomeScreen = ({ navigation }: NavigationProps) => {
-  const { logout } = useAuth();
+  const { user } = useAuth();
   const [data, setData] = useState<SectionListData[]>([]);
   const [searchBarText, setSearchBarText] = useState("");
   const [query, setQuery] = useState("");
   const [filterSelections, setFilterSelections] = useState(
     sections.map(() => false)
   );
+  const initials = getUserInitials(user);
 
   const getData = async () => {
     try {
@@ -153,12 +158,28 @@ export const HomeScreen = ({ navigation }: NavigationProps) => {
         onChange={handleFiltersChange}
         sections={sections}
       />
-      <Text style={styles.title}>Home</Text>
-      <CustomBtn
-        title="My Account"
-        onPress={() => navigation.navigate("Account")}
-      />
-      <CustomBtn title="Logout" onPress={() => logout()} />
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop: -12,
+        }}
+      >
+        <Text
+          style={[
+            styles.title,
+            {
+              flex: 1,
+              textAlign: "center",
+              paddingTop: 12,
+            },
+          ]}
+        >
+          Our Menu
+        </Text>
+        <MaterialIcons name="account-circle" size={40} color={colorDark} />
+      </View>
       <SectionList
         sections={data}
         keyExtractor={(item) =>
@@ -177,7 +198,7 @@ export const HomeScreen = ({ navigation }: NavigationProps) => {
 
 const Item = ({ title, price }: { title: string; price: string }) => (
   <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-    <Text style={styles.title}>${price}</Text>
+    <Text style={styles.text}>{title}</Text>
+    <Text style={styles.text}>${price}</Text>
   </View>
 );

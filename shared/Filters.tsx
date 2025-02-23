@@ -23,6 +23,7 @@ export const Filters: React.FC<FiltersProps> = ({
             backgroundColor: selections[index] ? "#f2cf31" : "#495E57",
             borderWidth: 1,
             borderColor: "white",
+            marginTop: -8,
           }}
           activeOpacity={1} // Prevent opacity change on press
         >
