@@ -7,7 +7,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import { Alert, SectionList, Text, View } from "react-native";
+import { Alert, SectionList, Text, TouchableOpacity, View } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { useAuth } from "../hooks/useAuth";
 import { Filters } from "../shared/Filters";
@@ -178,7 +178,9 @@ export const HomeScreen = ({ navigation }: NavigationProps) => {
         >
           Our Menu
         </Text>
-        <MaterialIcons name="account-circle" size={40} color={colorDark} />
+        <TouchableOpacity onPress={() => navigation.navigate("Account")}>
+          <MaterialIcons name="account-circle" size={40} color={colorDark} />
+        </TouchableOpacity>
       </View>
       <SectionList
         sections={data}
