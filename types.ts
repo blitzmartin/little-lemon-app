@@ -5,6 +5,7 @@ export type NavigationProps ={
   };
 }
 
+
 export type SectionListData = {
   title: string;
   data: MenuItem[];

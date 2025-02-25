@@ -46,11 +46,10 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   searchBar: {
-    marginTop: -20,
-    marginBottom: 24,
     backgroundColor: colorGreen,
     shadowRadius: 0,
     shadowOpacity: 0,
+    borderRadius: 0,
     padding: 0,
   },
   titleContainer: {

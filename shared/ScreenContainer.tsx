@@ -18,7 +18,7 @@ export const ScreenContainer = ({
   children: ReactNode;
   backgroundColor?: string;
   hasAccount?: boolean;
-  navigation: any;
+  navigation?: any;
 }) => {
   return (
     <View style={[styles.container, { backgroundColor }]}>
@@ -30,13 +30,13 @@ export const ScreenContainer = ({
           />
         </View>
 
-        {hasAccount && (
+        {hasAccount && navigation && (
           <TouchableOpacity onPress={() => navigation.navigate("Account")}>
             <CustomAvatar size="small" />
           </TouchableOpacity>
         )}
       </View>
-      <View style={styles.innerContainer}>{children}</View>
+      <View>{children}</View>
     </View>
   );
 };

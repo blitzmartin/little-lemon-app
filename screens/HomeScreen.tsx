@@ -6,7 +6,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import { Alert, SectionList, Text, View } from "react-native";
+import { Alert, ImageBackground, SectionList, Text, View } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { Filters } from "../shared/Filters";
 import { ScreenContainer } from "../shared/ScreenContainer";
@@ -135,34 +135,47 @@ export const HomeScreen = ({ navigation }: NavigationProps) => {
 
   return (
     <ScreenContainer navigation={navigation} hasAccount>
-      <Searchbar
-        placeholder="Search"
-        placeholderTextColor="white"
-        onChangeText={handleSearchChange}
-        value={searchBarText}
-        style={styles.searchBar}
-        iconColor="white"
-        inputStyle={{ color: "white" }}
-        elevation={0}
-      />
-      <Filters
-        selections={filterSelections}
-        onChange={handleFiltersChange}
-        sections={sections}
-      />
-      <Text style={styles.title}>Our Menu</Text>
-      <SectionList
-        sections={data}
-        keyExtractor={(item) =>
-          item?.id?.toString() ?? Math.random().toString()
-        }
-        renderItem={({ item }) =>
-          item ? <Item title={item.title} price={item.price} /> : null
-        }
-        renderSectionHeader={({ section: { title } }) => (
-          <Text style={styles.sectionHeader}>{title}</Text>
-        )}
-      />
+      <ImageBackground
+        source={require("../assets/hero-image.png")}
+        resizeMode="cover"
+        style={{
+          width: "100%",
+          height: 360,
+          marginBottom: 16,
+          flexDirection: "column",
+          justifyContent: "flex-end",
+        }}
+      >
+        <Searchbar
+          placeholder="Search"
+          placeholderTextColor="white"
+          onChangeText={handleSearchChange}
+          value={searchBarText}
+          style={styles.searchBar}
+          iconColor="white"
+          inputStyle={{ color: "white" }}
+          elevation={0}
+        />
+      </ImageBackground>
+      <View>
+        <Filters
+          selections={filterSelections}
+          onChange={handleFiltersChange}
+          sections={sections}
+        />
+        <SectionList
+          sections={data}
+          keyExtractor={(item) =>
+            item?.id?.toString() ?? Math.random().toString()
+          }
+          renderItem={({ item }) =>
+            item ? <Item title={item.title} price={item.price} /> : null
+          }
+          renderSectionHeader={({ section: { title } }) => (
+            <Text style={styles.sectionHeader}>{title}</Text>
+          )}
+        />
+      </View>
     </ScreenContainer>
   );
 };
