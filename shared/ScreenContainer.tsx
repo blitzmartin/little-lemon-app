@@ -1,5 +1,11 @@
 import { ReactNode } from "react";
-import { Image, ScrollView, StyleSheet, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { colorLight } from "../styles";
 import { CustomAvatar } from "./CustomAvatar";
 
@@ -7,19 +13,38 @@ export const ScreenContainer = ({
   children,
   backgroundColor = colorLight,
   hasAccount = false,
+  navigation,
 }: {
   children: ReactNode;
   backgroundColor?: string;
   hasAccount?: boolean;
+  navigation: any;
 }) => {
   return (
     <View style={[styles.container, { backgroundColor }]}>
-      <View style={styles.logoContainer}>
-        <Image
-          source={require("../assets/little-lemon-logo.png")}
-          style={styles.logo}
-        />
-        {hasAccount && <CustomAvatar size="small" />}
+      <View
+        style={{
+          width: "100%",
+          height: 72,
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+          paddingHorizontal: 16,
+          backgroundColor: "#fff",
+        }}
+      >
+        <View style={{ flex: 1, alignItems: "center" }}>
+          <Image
+            source={require("../assets/little-lemon-logo.png")}
+            style={styles.logo}
+          />
+        </View>
+
+        {hasAccount && (
+          <TouchableOpacity onPress={() => navigation.navigate("Account")}>
+            <CustomAvatar size="small" />
+          </TouchableOpacity>
+        )}
       </View>
       <View style={styles.innerContainer}>{children}</View>
     </View>

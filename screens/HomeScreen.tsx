@@ -6,10 +6,9 @@ import {
   useMemo,
   useState,
 } from "react";
-import { Alert, SectionList, Text, TouchableOpacity, View } from "react-native";
+import { Alert, SectionList, Text, View } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { useAuth } from "../hooks/useAuth";
-import { CustomAvatar } from "../shared";
 import { Filters } from "../shared/Filters";
 import { ScreenContainer } from "../shared/ScreenContainer";
 import { styles } from "../styles";
@@ -20,11 +19,7 @@ import {
   getMenuItems,
   saveMenuItems,
 } from "../utils/database";
-import {
-  getSectionListData,
-  getUserInitials,
-  useUpdateEffect,
-} from "../utils/utils";
+import { getSectionListData, useUpdateEffect } from "../utils/utils";
 
 const API_URL =
   "https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu-items-by-category.json";
@@ -38,7 +33,6 @@ export const HomeScreen = ({ navigation }: NavigationProps) => {
   const [filterSelections, setFilterSelections] = useState(
     sections.map(() => false)
   );
-  const initials = getUserInitials(user);
 
   const getData = async () => {
     try {
@@ -142,7 +136,7 @@ export const HomeScreen = ({ navigation }: NavigationProps) => {
   };
 
   return (
-    <ScreenContainer>
+    <ScreenContainer navigation={navigation} hasAccount>
       <Searchbar
         placeholder="Search"
         placeholderTextColor="white"
@@ -158,30 +152,7 @@ export const HomeScreen = ({ navigation }: NavigationProps) => {
         onChange={handleFiltersChange}
         sections={sections}
       />
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-          marginTop: -12,
-        }}
-      >
-        <Text
-          style={[
-            styles.title,
-            {
-              flex: 1,
-              textAlign: "center",
-              paddingTop: 12,
-            },
-          ]}
-        >
-          Our Menu
-        </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Account")}>
-          <CustomAvatar size="medium" />
-        </TouchableOpacity>
-      </View>
+      <Text style={styles.title}>Our Menu</Text>
       <SectionList
         sections={data}
         keyExtractor={(item) =>

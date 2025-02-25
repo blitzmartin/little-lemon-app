@@ -14,7 +14,6 @@ import {
   SpacedStack,
 } from "../shared";
 import { styles } from "../styles";
-import { getUserInitials } from "../utils/utils";
 
 const editAccountValidationSchema = z.object({
   orderStatus: z.boolean(),
@@ -27,7 +26,6 @@ type EditAccountFormValues = z.infer<typeof editAccountValidationSchema>;
 
 export const AccountScreen = () => {
   const { user, savePreferences, logout } = useAuth();
-  const initials = getUserInitials(user);
 
   const editAccount = useForm<EditAccountFormValues>({
     // populate with values found in user preferences
