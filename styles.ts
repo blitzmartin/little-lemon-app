@@ -34,7 +34,6 @@ export const styles = StyleSheet.create({
     color: "#333",
     backgroundColor: colorYellow,
     padding: 8,
-    marginTop: 8,
   },
   item: {
     flexDirection: "row",

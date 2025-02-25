@@ -24,7 +24,6 @@ export const Filters: React.FC<FiltersProps> = ({
             borderWidth: 2,
             borderRadius: 16,
             borderColor: colorGreen,
-            marginTop: -8,
             marginHorizontal: 4,
           }}
           activeOpacity={1} // Prevent opacity change on press

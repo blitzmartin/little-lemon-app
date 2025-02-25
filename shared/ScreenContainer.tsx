@@ -32,7 +32,7 @@ export const ScreenContainer = ({
 
         {hasAccount && navigation && (
           <TouchableOpacity onPress={() => navigation.navigate("Account")}>
-            <CustomAvatar size="small" />
+            <CustomAvatar size="medium" />
           </TouchableOpacity>
         )}
       </View>
