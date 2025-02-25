@@ -1,5 +1,5 @@
 import { Text, TouchableOpacity, View } from "react-native";
-import { styles } from "../styles";
+import { colorGreen, colorLight, styles } from "../styles";
 import { FiltersProps } from "../types";
 
 export const Filters: React.FC<FiltersProps> = ({
@@ -19,18 +19,19 @@ export const Filters: React.FC<FiltersProps> = ({
             flex: 1 / sections.length,
             justifyContent: "center",
             alignItems: "center",
-            padding: 16,
-            backgroundColor: selections[index] ? "#f2cf31" : "#495E57",
+            padding: 12,
+            backgroundColor: selections[index] ? "#f2cf31" : colorLight,
             borderWidth: 1,
-            borderColor: "white",
+            borderRadius: 8,
+            borderColor: colorGreen,
             marginTop: -8,
+            marginHorizontal: 4,
           }}
           activeOpacity={1} // Prevent opacity change on press
         >
           <View>
-            <Text style={{ color: selections[index] ? "black" : "white" }}>
-              {section}
-            </Text>
+            {/*   <Text style={{ color: selections[index] ? "black" : "white" }}> */}
+            <Text>{section}</Text>
           </View>
         </TouchableOpacity>
       ))}

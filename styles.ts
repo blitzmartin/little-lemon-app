@@ -24,13 +24,13 @@ export const styles = StyleSheet.create({
     fontSize: 16,
   },
   filtersContainer: {
-    backgroundColor: "green",
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 16,
   },
   sectionHeader: {
-    fontSize: 24,
+    fontSize: 16,
+    fontWeight: "bold",
     color: "#333",
     backgroundColor: colorYellow,
     padding: 8,
