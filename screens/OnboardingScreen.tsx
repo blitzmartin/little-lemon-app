@@ -5,7 +5,6 @@ import { useAuth } from "../hooks/useAuth";
 import { CustomBtn, ScreenContainer, SpacedStack } from "../shared";
 import {
   colorDark,
-  colorDisabled,
   colorGray,
   colorGreen,
   colorLight,
@@ -80,10 +79,10 @@ export const OnboardingScreen = ({ navigation }: NavigationProps) => {
             style={{
               alignSelf: "center",
               marginTop: -20,
-              color: colorDisabled,
+              color: colorLight,
             }}
           >
-            Values cannot be empty, please fill of form fields.
+            Values cannot be empty, please fill all form fields.
           </Text>
         )}
       </SpacedStack>

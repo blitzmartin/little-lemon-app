@@ -1,12 +1,18 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { StyleSheet, Text, View } from "react-native";
-import { Avatar, CheckBox, Divider } from "react-native-elements";
+import { Text, View } from "react-native";
+import { CheckBox, Divider } from "react-native-elements";
 import { TextInput } from "react-native-paper";
 import { z } from "zod";
 import { useAuth } from "../hooks/useAuth";
-import { CustomBtn, LogoutBtn, ScrollContainer, SpacedStack } from "../shared";
+import {
+  CustomAvatar,
+  CustomBtn,
+  LogoutBtn,
+  ScrollContainer,
+  SpacedStack,
+} from "../shared";
 import { styles } from "../styles";
 import { getUserInitials } from "../utils/utils";
 
@@ -77,15 +83,14 @@ export const AccountScreen = () => {
         <LogoutBtn onPress={() => logout()} />
       </View>
       <SpacedStack>
-        <View style={accountStyles.avatarContainer}>
-          <Avatar
-            rounded
-            size="large"
-            title={initials}
-            source={{
-              uri: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
-            }}
-          />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+          }}
+        >
+          <CustomAvatar />
           <CustomBtn
             title="Change"
             onPress={() => console.log("Change propic")}
@@ -123,69 +128,67 @@ export const AccountScreen = () => {
           </>
         )}
         <Divider style={{ marginTop: 12 }} />
-        <Text style={[styles.title, { fontSize: 20 }]}>
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: "bold",
+            alignSelf: "center",
+          }}
+        >
           Email Notifications
         </Text>
-        <View style={accountStyles.checkboxContainer}>
-          <Controller
-            control={editAccount.control}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <CheckBox
-                title="Order Status"
-                checked={value}
-                onPress={() => onChange(!value)}
-                onBlur={onBlur}
-              />
-            )}
-            name="orderStatus"
-            rules={{ required: true }}
-          />
-        </View>
-        <View style={accountStyles.checkboxContainer}>
-          <Controller
-            control={editAccount.control}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <CheckBox
-                title="Password Change"
-                checked={value}
-                onPress={() => onChange(!value)}
-                onBlur={onBlur}
-              />
-            )}
-            name="passwordChange"
-            rules={{ required: true }}
-          />
-        </View>
-        <View style={accountStyles.checkboxContainer}>
-          <Controller
-            control={editAccount.control}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <CheckBox
-                title="Special Offer"
-                checked={value}
-                onPress={() => onChange(!value)}
-                onBlur={onBlur}
-              />
-            )}
-            name="specialOffer"
-            rules={{ required: true }}
-          />
-        </View>
-        <View style={accountStyles.checkboxContainer}>
-          <Controller
-            control={editAccount.control}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <CheckBox
-                title="Newsletter"
-                checked={value}
-                onPress={() => onChange(!value)}
-                onBlur={onBlur}
-              />
-            )}
-            name="newsletter"
-            rules={{ required: true }}
-          />
-        </View>
+        <Controller
+          control={editAccount.control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <CheckBox
+              title="Order Status"
+              checked={value}
+              onPress={() => onChange(!value)}
+              onBlur={onBlur}
+            />
+          )}
+          name="orderStatus"
+          rules={{ required: true }}
+        />
+        <Controller
+          control={editAccount.control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <CheckBox
+              title="Password Change"
+              checked={value}
+              onPress={() => onChange(!value)}
+              onBlur={onBlur}
+            />
+          )}
+          name="passwordChange"
+          rules={{ required: true }}
+        />
+        <Controller
+          control={editAccount.control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <CheckBox
+              title="Special Offer"
+              checked={value}
+              onPress={() => onChange(!value)}
+              onBlur={onBlur}
+            />
+          )}
+          name="specialOffer"
+          rules={{ required: true }}
+        />
+        <Controller
+          control={editAccount.control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <CheckBox
+              title="Newsletter"
+              checked={value}
+              onPress={() => onChange(!value)}
+              onBlur={onBlur}
+            />
+          )}
+          name="newsletter"
+          rules={{ required: true }}
+        />
         <CustomBtn
           title="Save Changes"
           onPress={editAccount.handleSubmit(onSaveAccountSubmit)}
@@ -199,21 +202,3 @@ export const AccountScreen = () => {
     </ScrollContainer>
   );
 };
-
-const accountStyles = StyleSheet.create({
-  avatarContainer: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-  },
-  checkboxContainer: {
-    flexDirection: "row",
-    marginBottom: 20,
-  },
-  checkbox: {
-    alignSelf: "center",
-  },
-  label: {
-    margin: 8,
-  },
-});

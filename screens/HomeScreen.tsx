@@ -1,4 +1,3 @@
-import { MaterialIcons } from "@expo/vector-icons";
 import debounce from "lodash.debounce";
 import {
   SetStateAction,
@@ -10,9 +9,10 @@ import {
 import { Alert, SectionList, Text, TouchableOpacity, View } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { useAuth } from "../hooks/useAuth";
+import { CustomAvatar } from "../shared";
 import { Filters } from "../shared/Filters";
 import { ScreenContainer } from "../shared/ScreenContainer";
-import { colorDark, styles } from "../styles";
+import { styles } from "../styles";
 import { MenuItem, NavigationProps, SectionListData } from "../types";
 import {
   createTable,
@@ -179,7 +179,7 @@ export const HomeScreen = ({ navigation }: NavigationProps) => {
           Our Menu
         </Text>
         <TouchableOpacity onPress={() => navigation.navigate("Account")}>
-          <MaterialIcons name="account-circle" size={40} color={colorDark} />
+          <CustomAvatar size="medium" />
         </TouchableOpacity>
       </View>
       <SectionList
