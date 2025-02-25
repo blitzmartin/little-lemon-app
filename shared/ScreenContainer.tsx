@@ -22,17 +22,7 @@ export const ScreenContainer = ({
 }) => {
   return (
     <View style={[styles.container, { backgroundColor }]}>
-      <View
-        style={{
-          width: "100%",
-          height: 72,
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
-          paddingHorizontal: 16,
-          backgroundColor: "#fff",
-        }}
-      >
+      <View style={styles.header}>
         <View style={{ flex: 1, alignItems: "center" }}>
           <Image
             source={require("../assets/little-lemon-logo.png")}
@@ -69,6 +59,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  header: {
+    width: "100%",
+    height: 76,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 16,
+    backgroundColor: "#fff",
+  },
   innerContainer: {
     padding: 16,
     flex: 1,
@@ -82,7 +81,7 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     width: "100%",
-    height: 68,
+    height: 72,
     alignSelf: "center",
     marginBottom: 8,
     backgroundColor: "#fff",
