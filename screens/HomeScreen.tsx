@@ -8,7 +8,6 @@ import {
 } from "react";
 import { Alert, SectionList, Text, View } from "react-native";
 import { Searchbar } from "react-native-paper";
-import { useAuth } from "../hooks/useAuth";
 import { Filters } from "../shared/Filters";
 import { ScreenContainer } from "../shared/ScreenContainer";
 import { styles } from "../styles";
@@ -26,10 +25,10 @@ const API_URL =
 const sections = ["Appetizers", "Salads", "Beverages"];
 
 export const HomeScreen = ({ navigation }: NavigationProps) => {
-  const { user } = useAuth();
   const [data, setData] = useState<SectionListData[]>([]);
   const [searchBarText, setSearchBarText] = useState("");
   const [query, setQuery] = useState("");
+  const [isExpanded, setIsExpanded] = useState(false);
   const [filterSelections, setFilterSelections] = useState(
     sections.map(() => false)
   );
@@ -146,6 +145,7 @@ export const HomeScreen = ({ navigation }: NavigationProps) => {
         iconColor="white"
         inputStyle={{ color: "white" }}
         elevation={0}
+        onBlur={() => setIsExpanded(false)} // Collapse when losing focus
       />
       <Filters
         selections={filterSelections}

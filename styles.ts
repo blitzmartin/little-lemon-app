@@ -51,6 +51,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colorGreen,
     shadowRadius: 0,
     shadowOpacity: 0,
+    padding: 0,
   },
   titleContainer: {
     flexDirection: "row",
