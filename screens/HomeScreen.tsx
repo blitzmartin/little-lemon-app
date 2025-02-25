@@ -10,7 +10,7 @@ import { Alert, ImageBackground, SectionList, Text, View } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { Filters } from "../shared/Filters";
 import { ScreenContainer } from "../shared/ScreenContainer";
-import { styles } from "../styles";
+import { colorYellow, styles } from "../styles";
 import { MenuItem, NavigationProps, SectionListData } from "../types";
 import {
   createTable,
@@ -143,11 +143,29 @@ export const HomeScreen = ({ navigation }: NavigationProps) => {
           height: 360,
           marginBottom: 16,
           flexDirection: "column",
-          justifyContent: "flex-end",
+          justifyContent: "space-between",
         }}
       >
+        <Text
+          style={{
+            color: colorYellow,
+            fontSize: 48,
+            fontWeight: "bold",
+            shadowColor: "black",
+            shadowOffset: { width: 0, height: 0 },
+            shadowOpacity: 0.5,
+            shadowRadius: 10,
+            textShadowColor: "black",
+            textShadowOffset: { width: 0, height: 0 },
+            textShadowRadius: 10,
+            textAlign: "right",
+            paddingHorizontal: 8,
+          }}
+        >
+          Welcome to Little Lemon!
+        </Text>
         <Searchbar
-          placeholder="Search"
+          placeholder="Search in menu"
           placeholderTextColor="white"
           onChangeText={handleSearchChange}
           value={searchBarText}
