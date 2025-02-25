@@ -28,7 +28,6 @@ export const HomeScreen = ({ navigation }: NavigationProps) => {
   const [data, setData] = useState<SectionListData[]>([]);
   const [searchBarText, setSearchBarText] = useState("");
   const [query, setQuery] = useState("");
-  const [isExpanded, setIsExpanded] = useState(false);
   const [filterSelections, setFilterSelections] = useState(
     sections.map(() => false)
   );
@@ -145,7 +144,6 @@ export const HomeScreen = ({ navigation }: NavigationProps) => {
         iconColor="white"
         inputStyle={{ color: "white" }}
         elevation={0}
-        onBlur={() => setIsExpanded(false)} // Collapse when losing focus
       />
       <Filters
         selections={filterSelections}
