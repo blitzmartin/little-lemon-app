@@ -1,6 +1,4 @@
 import { Avatar } from "react-native-elements";
-/* @ts-ignore */
-import ProfileImage from "../assets/Profile.png";
 import { useAuth } from "../hooks/useAuth";
 import { getUserInitials } from "../utils/utils";
 
@@ -12,5 +10,12 @@ export const CustomAvatar = ({
   const { user } = useAuth();
   const initials = getUserInitials(user);
 
-  return <Avatar rounded size={size} title={initials} source={ProfileImage} />;
+  return (
+    <Avatar
+      rounded
+      size={size}
+      title={initials}
+      source={require("../assets/Profile.png")}
+    />
+  );
 };

@@ -1,13 +1,16 @@
 import { ReactNode } from "react";
 import { Image, ScrollView, StyleSheet, View } from "react-native";
 import { colorLight } from "../styles";
+import { CustomAvatar } from "./CustomAvatar";
 
 export const ScreenContainer = ({
   children,
   backgroundColor = colorLight,
+  hasAccount = false,
 }: {
   children: ReactNode;
   backgroundColor?: string;
+  hasAccount?: boolean;
 }) => {
   return (
     <View style={[styles.container, { backgroundColor }]}>
@@ -16,6 +19,7 @@ export const ScreenContainer = ({
           source={require("../assets/little-lemon-logo.png")}
           style={styles.logo}
         />
+        {hasAccount && <CustomAvatar size="small" />}
       </View>
       <View style={styles.innerContainer}>{children}</View>
     </View>
