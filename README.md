@@ -12,3 +12,5 @@ To start the project:
 * run ```npm run start``` to execute the app
 
 If you want to test the app locally in a simulator, you need either XCode or Android Studio.
+
+Inside the ```./assets/images``` folder you will find the wireframe and prototype images.
