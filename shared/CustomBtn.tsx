@@ -1,17 +1,12 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  TextStyle,
-  TouchableOpacity,
-  ViewStyle,
-} from "react-native";
+import { Text, TextStyle, TouchableOpacity, ViewStyle } from "react-native";
 import {
   colorDark,
   colorDisabled,
   colorGreen,
   colorLight,
   colorYellow,
+  styles,
 } from "../styles";
 
 type Variant = "default" | "dark" | "outline" | "disabled";
@@ -99,7 +94,7 @@ export const CustomBtn = ({
 
   return (
     <TouchableOpacity
-      style={[styles.button, getButtonStyle()]}
+      style={[styles.customButton, getButtonStyle()]}
       onPress={onPress}
       disabled={disabled || variant === "disabled"}
     >
@@ -107,19 +102,3 @@ export const CustomBtn = ({
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  button: {
-    borderRadius: 8,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderWidth: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 8,
-  },
-  text: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-});

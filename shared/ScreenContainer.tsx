@@ -1,8 +1,47 @@
 import { ReactNode } from "react";
-import { Image, StyleSheet, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { colorLight } from "../styles";
+import { CustomAvatar } from "./CustomAvatar";
 
 export const ScreenContainer = ({
+  children,
+  backgroundColor = colorLight,
+  hasAccount = false,
+  navigation,
+}: {
+  children: ReactNode;
+  backgroundColor?: string;
+  hasAccount?: boolean;
+  navigation?: any;
+}) => {
+  return (
+    <View style={[styles.container, { backgroundColor }]}>
+      <View style={styles.header}>
+        <View style={{ flex: 1, alignItems: "center" }}>
+          <Image
+            source={require("../assets/images/little-lemon-logo.png")}
+            style={styles.logo}
+          />
+        </View>
+
+        {hasAccount && navigation && (
+          <TouchableOpacity onPress={() => navigation.navigate("Account")}>
+            <CustomAvatar size="medium" />
+          </TouchableOpacity>
+        )}
+      </View>
+      <View>{children}</View>
+    </View>
+  );
+};
+
+export const ScrollContainer = ({
   children,
   backgroundColor = colorLight,
 }: {
@@ -11,13 +50,7 @@ export const ScreenContainer = ({
 }) => {
   return (
     <View style={[styles.container, { backgroundColor }]}>
-      <View style={styles.logoContainer}>
-        <Image
-          source={require("../assets/little-lemon-logo.png")}
-          style={styles.logo}
-        />
-      </View>
-      <View style={styles.innerContainer}>{children}</View>
+      <ScrollView style={styles.innerContainer}>{children}</ScrollView>
     </View>
   );
 };
@@ -25,6 +58,15 @@ export const ScreenContainer = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  header: {
+    width: "100%",
+    height: 76,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 16,
+    backgroundColor: "#fff",
   },
   innerContainer: {
     padding: 16,
@@ -35,13 +77,13 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     margin: 16,
     width: "100%",
-    height: 60,
+    height: 40,
   },
   logoContainer: {
     width: "100%",
-    height: 92,
+    height: 72,
     alignSelf: "center",
-    marginBottom: 16,
+    marginBottom: 8,
     backgroundColor: "#fff",
   },
 });

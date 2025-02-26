@@ -1,67 +1,103 @@
 import { useState } from "react";
-import { StyleSheet, Text } from "react-native";
+import { Text, View } from "react-native";
 import { TextInput } from "react-native-paper";
-import { CustomBtn, ScreenContainer, SpacedStack } from "../shared";
-import { colorGreen } from "../styles";
+import { useAuth } from "../hooks/useAuth";
+import { CustomBtn, ScreenContainer } from "../shared";
+import {
+  colorDark,
+  colorGray,
+  colorGreen,
+  colorLight,
+  styles,
+} from "../styles";
+import { NavigationProps } from "../types";
+import { generateFakeToken } from "../utils/utils";
 
-interface OnboardingScreenProps {
-  navigation: {
-    navigate: (screen: string) => void;
-  };
-}
-
-export const OnboardingScreen = ({ navigation }: OnboardingScreenProps) => {
-  const [name, setName] = useState<string>("");
+export const OnboardingScreen = ({ navigation }: NavigationProps) => {
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
 
+  const { login } = useAuth();
+  const token = generateFakeToken();
+  const isBtnDisabled = firstName == "" || lastName == "" || email === "";
+
   const handlePress = () => {
-    console.log("Name:", name);
-    console.log("Email:", email);
-    setName("");
+    login({ firstName, lastName, email }, token);
+    setFirstName("");
+    setLastName("");
     setEmail("");
     navigation.navigate("Home");
   };
 
   return (
     <ScreenContainer backgroundColor={colorGreen}>
-      <Text style={styles.title}>Welcome To Little Lemon</Text>
-      <SpacedStack gap={32}>
+      <Text
+        style={[
+          styles.title,
+          { color: colorLight, marginTop: 12, fontSize: 36 },
+        ]}
+      >
+        Welcome To Little Lemon!
+      </Text>
+      <View
+        style={{
+          flexGrow: 1,
+          flexDirection: "column",
+          gap: 32,
+          paddingHorizontal: 16,
+        }}
+      >
         <TextInput
-          label="Name"
           mode="outlined"
-          value={name}
-          onChangeText={setName}
+          value={firstName}
+          onChangeText={setFirstName}
+          placeholderTextColor={colorGray}
+          placeholder="First Name"
+          theme={{
+            colors: { primary: colorDark },
+          }}
         />
         <TextInput
-          label="Email"
+          mode="outlined"
+          value={lastName}
+          onChangeText={setLastName}
+          placeholderTextColor={colorGray}
+          placeholder="Last Name"
+          theme={{
+            colors: { primary: colorDark },
+          }}
+        />
+        <TextInput
           mode="outlined"
           value={email}
           onChangeText={setEmail}
+          textContentType="emailAddress"
+          keyboardType="email-address"
+          placeholderTextColor={colorGray}
+          placeholder="Email"
+          autoCapitalize="none"
+          theme={{
+            colors: { primary: colorDark },
+          }}
         />
         <CustomBtn
           title="Next"
           onPress={handlePress}
-          disabled={name == "" || email === ""}
+          disabled={isBtnDisabled}
         />
-      </SpacedStack>
+        {isBtnDisabled && (
+          <Text
+            style={{
+              alignSelf: "center",
+              marginTop: -20,
+              color: colorLight,
+            }}
+          >
+            Values cannot be empty, please fill all form fields.
+          </Text>
+        )}
+      </View>
     </ScreenContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 24,
-    alignSelf: "center",
-    color: "#fff",
-  },
-  input: {
-    width: "80%",
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    borderRadius: 4,
-    padding: 12,
-  },
-});
