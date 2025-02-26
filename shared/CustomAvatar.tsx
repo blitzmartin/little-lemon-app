@@ -15,7 +15,7 @@ export const CustomAvatar = ({
       rounded
       size={size}
       title={initials}
-      source={require("../assets/Profile.png")}
+      source={require("../assets/images/Profile.png")}
     />
   );
 };

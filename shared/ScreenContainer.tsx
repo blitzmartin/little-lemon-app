@@ -25,7 +25,7 @@ export const ScreenContainer = ({
       <View style={styles.header}>
         <View style={{ flex: 1, alignItems: "center" }}>
           <Image
-            source={require("../assets/little-lemon-logo.png")}
+            source={require("../assets/images/little-lemon-logo.png")}
             style={styles.logo}
           />
         </View>
