@@ -12,5 +12,17 @@ To start the project:
 * run ```npm run start``` to execute the app
 
 If you want to test the app locally in a simulator, you need either XCode or Android Studio.
+Below you fill find the Wireframe of the home screen and the Prototype of the different screens.
 
-Inside the ```./assets/images``` folder you will find the wireframe and prototype images.
+___
+
+### Wireframe
+
+![Wireframe](assets/images/Wireframe_LittleLemon.png)
+
+
+---------
+
+### Prototype
+
+![Prototype](assets/images/Prototype_LittleLemon.png)
