@@ -14,6 +14,7 @@ import {
   SpacedStack,
 } from "../shared";
 import { styles } from "../styles";
+import { NavigationProps } from "../types";
 
 const editAccountValidationSchema = z.object({
   orderStatus: z.boolean(),
@@ -24,7 +25,7 @@ const editAccountValidationSchema = z.object({
 
 type EditAccountFormValues = z.infer<typeof editAccountValidationSchema>;
 
-export const AccountScreen = () => {
+export const AccountScreen = ({ navigation }: NavigationProps) => {
   const { user, savePreferences, logout } = useAuth();
 
   const editAccount = useForm<EditAccountFormValues>({
@@ -42,6 +43,7 @@ export const AccountScreen = () => {
     try {
       await savePreferences(values);
       console.log("Preferences saved successfully!");
+      navigation.navigate("Home");
     } catch (error) {
       console.error("Failed to save preferences:", error);
     }
