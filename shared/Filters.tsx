@@ -26,11 +26,10 @@ export const Filters: React.FC<FiltersProps> = ({
             borderColor: colorGreen,
             marginHorizontal: 4,
           }}
-          activeOpacity={1} // Prevent opacity change on press
+          activeOpacity={1}
         >
           <View>
-            {/*   <Text style={{ color: selections[index] ? "black" : "white" }}> */}
-            <Text>{section}</Text>
+            <Text style={styles.text}>{section}</Text>
           </View>
         </TouchableOpacity>
       ))}

@@ -1,3 +1,6 @@
+import { Karla_400Regular } from "@expo-google-fonts/karla";
+import { MarkaziText_500Medium } from "@expo-google-fonts/markazi-text";
+import { useFonts } from "expo-font";
 import debounce from "lodash.debounce";
 import React, {
   SetStateAction,
@@ -31,6 +34,13 @@ export const HomeScreen = ({ navigation }: NavigationProps) => {
   const [filterSelections, setFilterSelections] = useState(
     sections.map(() => false)
   );
+  let [fontsLoaded] = useFonts({
+    Karla_400Regular,
+    MarkaziText_500Medium,
+  });
+  if (!fontsLoaded) {
+    console.error("Some issues when loading fonts");
+  }
 
   const getData = async () => {
     try {
@@ -136,7 +146,7 @@ export const HomeScreen = ({ navigation }: NavigationProps) => {
   return (
     <ScreenContainer navigation={navigation} hasAccount>
       <ImageBackground
-        source={require("../assets/hero-image.png")}
+        source={require("../assets/images/hero-image.png")}
         resizeMode="cover"
         style={{
           width: "100%",
@@ -149,8 +159,7 @@ export const HomeScreen = ({ navigation }: NavigationProps) => {
         <Text
           style={{
             color: colorYellow,
-            fontSize: 48,
-            fontWeight: "bold",
+            fontSize: 60,
             shadowColor: "black",
             shadowOffset: { width: 0, height: 0 },
             shadowOpacity: 0.5,
@@ -160,6 +169,7 @@ export const HomeScreen = ({ navigation }: NavigationProps) => {
             textShadowRadius: 10,
             textAlign: "right",
             paddingHorizontal: 8,
+            fontFamily: "MarkaziText_500Medium",
           }}
         >
           Welcome to Little Lemon!
@@ -171,7 +181,7 @@ export const HomeScreen = ({ navigation }: NavigationProps) => {
           value={searchBarText}
           style={styles.searchBar}
           iconColor="white"
-          inputStyle={{ color: "white" }}
+          inputStyle={styles.searchBarInput}
           elevation={0}
         />
       </ImageBackground>

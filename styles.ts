@@ -15,13 +15,15 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
    title: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: "bold",
     marginBottom: 20,
     alignSelf: "center",
+    fontFamily: "MarkaziText_500Medium",
   },
    text: {
-    fontSize: 16,
+     fontSize: 16,
+     fontFamily: "Karla_400Regular"
   },
   filtersContainer: {
     flexDirection: "row",
@@ -29,8 +31,8 @@ export const styles = StyleSheet.create({
     marginBottom: 16,
   },
   sectionHeader: {
-    fontSize: 16,
-    fontWeight: "bold",
+    fontSize: 28,
+    fontFamily: "MarkaziText_500Medium",
     color: "#333",
     backgroundColor: colorYellow,
     padding: 8,
@@ -51,9 +53,22 @@ export const styles = StyleSheet.create({
     borderRadius: 0,
     padding: 0,
   },
+  searchBarInput: {
+    color: "white",
+    fontFamily: "Karla_400Regular"
+  },
   titleContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
+  customButton: {
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderWidth: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 8,
+  }
 });

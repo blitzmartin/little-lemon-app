@@ -24,14 +24,6 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": [
-      "expo-font",
-      {
-        "fonts": [
-          "node_modules/@expo-google-fonts/karla/Karla_400Regular.ttf",
-          "node_modules/@expo-google-fonts/markazi-text/MarkaziText_500Medium.ttf"
-        ]
-      }
-    ]
+    "plugins": [["expo-font"]]
   }
 }
