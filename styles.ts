@@ -70,5 +70,9 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 8,
+  },
+  checkBoxText: {
+    fontFamily: "Karla_400Regular",
+    fontSize: 16,
   }
 });

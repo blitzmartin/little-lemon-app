@@ -127,11 +127,13 @@ export const AccountScreen = () => {
         )}
         <Divider style={{ marginTop: 12 }} />
         <Text
-          style={{
-            fontSize: 20,
-            fontWeight: "bold",
-            alignSelf: "center",
-          }}
+          style={[
+            styles.title,
+            {
+              alignSelf: "center",
+              marginBottom: -16,
+            },
+          ]}
         >
           Email Notifications
         </Text>
@@ -143,6 +145,7 @@ export const AccountScreen = () => {
               checked={value}
               onPress={() => onChange(!value)}
               onBlur={onBlur}
+              textStyle={styles.checkBoxText}
             />
           )}
           name="orderStatus"
@@ -156,6 +159,7 @@ export const AccountScreen = () => {
               checked={value}
               onPress={() => onChange(!value)}
               onBlur={onBlur}
+              textStyle={styles.checkBoxText}
             />
           )}
           name="passwordChange"
@@ -169,6 +173,7 @@ export const AccountScreen = () => {
               checked={value}
               onPress={() => onChange(!value)}
               onBlur={onBlur}
+              textStyle={styles.checkBoxText}
             />
           )}
           name="specialOffer"
@@ -182,6 +187,7 @@ export const AccountScreen = () => {
               checked={value}
               onPress={() => onChange(!value)}
               onBlur={onBlur}
+              textStyle={styles.checkBoxText}
             />
           )}
           name="newsletter"
@@ -197,6 +203,7 @@ export const AccountScreen = () => {
           variant="outline"
         />
       </SpacedStack>
+      <View style={{ height: 40 }}></View>
     </ScrollContainer>
   );
 };

@@ -13,7 +13,7 @@ import { Alert, ImageBackground, SectionList, Text, View } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { Filters } from "../shared/Filters";
 import { ScreenContainer } from "../shared/ScreenContainer";
-import { colorYellow, styles } from "../styles";
+import { colorLight, colorYellow, styles } from "../styles";
 import { MenuItem, NavigationProps, SectionListData } from "../types";
 import {
   createTable,
@@ -150,30 +150,51 @@ export const HomeScreen = ({ navigation }: NavigationProps) => {
         resizeMode="cover"
         style={{
           width: "100%",
-          height: 360,
+          height: 240,
           marginBottom: 16,
           flexDirection: "column",
           justifyContent: "space-between",
         }}
       >
-        <Text
-          style={{
-            color: colorYellow,
-            fontSize: 60,
-            shadowColor: "black",
-            shadowOffset: { width: 0, height: 0 },
-            shadowOpacity: 0.5,
-            shadowRadius: 10,
-            textShadowColor: "black",
-            textShadowOffset: { width: 0, height: 0 },
-            textShadowRadius: 10,
-            textAlign: "right",
-            paddingHorizontal: 8,
-            fontFamily: "MarkaziText_500Medium",
-          }}
-        >
-          Welcome to Little Lemon!
-        </Text>
+        <View>
+          <Text
+            style={{
+              color: colorYellow,
+              fontSize: 60,
+              shadowColor: "black",
+              shadowOffset: { width: 0, height: 0 },
+              shadowOpacity: 0.5,
+              shadowRadius: 10,
+              textShadowColor: "black",
+              textShadowOffset: { width: 0, height: 0 },
+              textShadowRadius: 10,
+              textAlign: "right",
+              paddingHorizontal: 8,
+              fontFamily: "MarkaziText_500Medium",
+            }}
+          >
+            Little Lemon
+          </Text>
+          <Text
+            style={{
+              color: colorLight,
+              fontSize: 48,
+              marginTop: -24,
+              shadowColor: "black",
+              shadowOffset: { width: 0, height: 0 },
+              shadowOpacity: 0.5,
+              shadowRadius: 10,
+              textShadowColor: "black",
+              textShadowOffset: { width: 0, height: 0 },
+              textShadowRadius: 10,
+              textAlign: "right",
+              paddingHorizontal: 8,
+              fontFamily: "MarkaziText_500Medium",
+            }}
+          >
+            Chicago
+          </Text>
+        </View>
         <Searchbar
           placeholder="Search in menu"
           placeholderTextColor="white"

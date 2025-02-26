@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import { TextInput } from "react-native-paper";
 import { useAuth } from "../hooks/useAuth";
-import { CustomBtn, ScreenContainer, SpacedStack } from "../shared";
+import { CustomBtn, ScreenContainer } from "../shared";
 import {
   colorDark,
   colorGray,
@@ -32,10 +32,22 @@ export const OnboardingScreen = ({ navigation }: NavigationProps) => {
 
   return (
     <ScreenContainer backgroundColor={colorGreen}>
-      <Text style={[styles.title, { color: colorLight }]}>
+      <Text
+        style={[
+          styles.title,
+          { color: colorLight, marginTop: 12, fontSize: 36 },
+        ]}
+      >
         Welcome To Little Lemon!
       </Text>
-      <SpacedStack gap={32}>
+      <View
+        style={{
+          flexGrow: 1,
+          flexDirection: "column",
+          gap: 32,
+          paddingHorizontal: 16,
+        }}
+      >
         <TextInput
           mode="outlined"
           value={firstName}
@@ -85,7 +97,7 @@ export const OnboardingScreen = ({ navigation }: NavigationProps) => {
             Values cannot be empty, please fill all form fields.
           </Text>
         )}
-      </SpacedStack>
+      </View>
     </ScreenContainer>
   );
 };
