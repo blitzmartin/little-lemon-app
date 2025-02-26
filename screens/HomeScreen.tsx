@@ -10,7 +10,7 @@ import React, {
   useState,
 } from "react";
 import { Alert, ImageBackground, SectionList, Text, View } from "react-native";
-import { Searchbar } from "react-native-paper";
+import { Divider, Searchbar } from "react-native-paper";
 import { Filters } from "../shared/Filters";
 import { ScreenContainer } from "../shared/ScreenContainer";
 import { colorLight, colorYellow, styles } from "../styles";
@@ -223,6 +223,7 @@ export const HomeScreen = ({ navigation }: NavigationProps) => {
           renderSectionHeader={({ section: { title } }) => (
             <Text style={styles.sectionHeader}>{title}</Text>
           )}
+          ItemSeparatorComponent={ItemSeparator}
         />
       </View>
     </ScreenContainer>
@@ -235,3 +236,5 @@ const Item = ({ title, price }: { title: string; price: string }) => (
     <Text style={styles.text}>${price}</Text>
   </View>
 );
+
+const ItemSeparator = () => <Divider style={{ marginHorizontal: 20 }} />;
