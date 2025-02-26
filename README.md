@@ -4,7 +4,7 @@
 
 You need node and expo installed on your machine to correctly run this project.
 
-In terminal run ```git clone [proejct_url]``` to copy the project locally.
+In terminal run ```git clone https://github.com/blitzmartin/little-lemon-app.git``` to copy the project locally.
 
 To start the project: 
 * ```cd``` into the project folder
